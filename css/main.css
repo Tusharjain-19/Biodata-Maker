@@ -174,8 +174,122 @@ body {
 }
 .modal-overlay.open .modal-box { transform: scale(1); }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  .site-nav { padding: 14px 20px; }
-  .step-line { width: 30px; }
+/* ── COMPREHENSIVE FOOTER ── */
+.site-footer {
+  background: #FFFFFF;
+  border-top: 1px solid var(--app-border);
+  padding: 80px 40px 40px;
+  color: var(--app-text);
+}
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  gap: 60px;
+}
+.footer-brand .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.footer-brand .footer-logo img {
+  height: 38px;
+  width: auto;
+}
+.footer-brand .footer-logo span {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--app-text);
+}
+.footer-brand p {
+  color: var(--app-text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 320px;
+}
+.footer-links-col h4 {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--app-gold);
+  margin-bottom: 24px;
+}
+.footer-links-col ul {
+  list-style: none;
+}
+.footer-links-col ul li {
+  margin-bottom: 12px;
+}
+.footer-links-col ul li a {
+  text-decoration: none;
+  font-size: 15px;
+  color: var(--app-text-muted);
+  transition: var(--transition);
+}
+.footer-links-col ul li a:hover {
+  color: var(--app-accent);
+  padding-left: 4px;
+}
+.footer-support-card {
+  background: var(--app-bg);
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+.footer-support-card p {
+  font-size: 14px;
+  margin-bottom: 16px;
+  color: var(--app-text-muted);
+}
+.footer-bottom {
+  max-width: 1100px;
+  margin: 60px auto 0;
+  padding-top: 30px;
+  border-top: 1px solid var(--app-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--app-text-muted);
+}
+.footer-bottom .heart {
+  color: #EF4444;
+}
+.footer-bottom a {
+  color: var(--app-text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .site-footer {
+    padding: 60px 20px 30px;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  .footer-brand .footer-logo, .footer-brand p {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
 }
