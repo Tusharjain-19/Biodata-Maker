@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support the Maker - Bio Data Maker</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/support.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <img src="assets/images/logo.png" alt="Bio Data Maker Logo" style="height: 32px; width: auto;">
+      <span style="font-family:var(--font-display); font-size:20px; color:var(--app-text); font-weight:700;">Bio Data Maker</span>
+    </a>
+    <a href="editor.html" class="btn btn-outline btn-sm">← Back to Editor</a>
+  </nav>
+
+  <!-- MAIN SUPPORT PAGE -->
+  <div class="support-page">
+
+    <!-- Hero Section -->
+    <div class="support-hero">
+      <span class="chai-emoji">🍵</span>
+      <div class="step-label">Support the Maker</div>
+      <h1>Buy me a Chai!</h1>
+      <p>
+        This tool is <strong>100% free</strong> with no ads, no watermarks, no login.<br>
+        If it saved your time and helped create a beautiful biodata,<br>
+        a small chai donation means the world to me. 
+      </p>
+    </div>
+
+    <!-- Support Card -->
+    <div class="support-card">
+
+      <!-- Amount Selector -->
+      <div class="amount-section">
+        <div class="amount-label">Choose an amount</div>
+        <div class="chai-options">
+          <button class="chai-btn" id="btn-11" onclick="selectChai(11, this)">
+            <span class="amount">₹11</span>
+            <span class="sublabel">1 Chai</span>
+          </button>
+          <button class="chai-btn active recommended" id="btn-21" onclick="selectChai(21, this)">
+            <span class="badge">Popular</span>
+            <span class="amount">₹21</span>
+            <span class="sublabel">2 Chais</span>
+          </button>
+          <button class="chai-btn" id="btn-51" onclick="selectChai(51, this)">
+            <span class="amount">₹51</span>
+            <span class="sublabel">5 Chais</span>
+          </button>
+          <button class="chai-btn" id="btn-101" onclick="selectChai(101, this)">
+            <span class="amount">₹101</span>
+            <span class="sublabel">Generous</span>
+          </button>
+        </div>
+
+        <!-- Custom Amount Input -->
+        <div class="custom-amount-row">
+          <span class="rupee-symbol">₹</span>
+          <input
+            type="number"
+            id="customAmountInput"
+            class="custom-input"
+            placeholder="Enter custom amount"
+            min="1"
+            oninput="handleCustomAmount(this.value)"
+          >
+        </div>
+      </div>
+
+      <!-- QR Section -->
+      <div class="qr-section">
+        <div class="qr-badge-label">SCAN TO PAY</div>
+        <div class="qr-wrapper">
+          <img id="upiQR" class="qr-img" src="" alt="UPI QR Code">
+          <div class="qr-spinner" id="qrSpinner">
+            <div class="spinner"></div>
+          </div>
+        </div>
+        <div class="amount-display">Paying <span id="amountText">₹21</span></div>
+        <div class="upi-id"> buychaifortushar@ibl</div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <a href="editor.html" class="btn btn-primary btn-block">✓ Done, Back to Editor</a>
+        <a href="index.html" class="btn btn-outline btn-block">Go to Home</a>
+      </div>
+    </div>
+
+    <!-- Heartfelt Note -->
+    <div class="makers-note">
+      <div class="note-icon">💌</div>
+      <p>
+        <strong>A note from Tushar:</strong><br>
+        I built this tool in my spare time because I believe every family deserves a beautiful biodata not just those who can afford professional designers.
+        Your support, big or small, keeps this dream alive for thousands of families across Bharat.
+      </p>
+      <a href="https://tusharjain.in" target="_blank" class="maker-link">Meet the Maker →</a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="dev-footer">
+    <div class="footer-motto">"Helping families find the perfect match, one biodata at a time."</div>
+    <div>Designed & Developed with <span class="heart">❤️</span> by <a href="https://tusharjain.in" target="_blank">Tushar Jain</a></div>
+    <div class="footer-tagline">Made with Love for Bharat</div>
+  </footer>
+
+  <script src="js/support.js"></script>
+</body>
+</html>

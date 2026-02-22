@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bio Data Maker</title>
+  <meta name="description" content="Create beautiful Indian marriage bio data PDF in 3 minutes. 8 templates, 10 color themes. Free. No login. Share on WhatsApp.">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* ── HERO ── */
+    .hero {
+      min-height: 90vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 140px 20px 100px;
+      background: var(--app-bg);
+      text-align: center; position: relative; overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      /* Very subtle badge */
+      color: var(--app-text-muted); padding: 4px 0;
+      font-size: 13px; font-weight: 700; margin-bottom: 24px;
+      animation: fadeIn 0.8s ease both;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .hero-h1 {
+      font-family: var(--font-display); font-size: clamp(34px, 5.5vw, 68px);
+      line-height: 1.2; color: var(--app-text); margin-bottom: 20px;
+      animation: fadeInPost 0.8s ease 0.1s both;
+      max-width: 900px;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 1.6vw, 20px); color: var(--app-text-muted);
+      max-width: 620px; margin: 0 auto 48px;
+      animation: fadeInPost 0.8s ease 0.2s both;
+      line-height: 1.8;
+    }
+    .hero-cta { animation: fadeInPost 0.8s ease 0.3s both; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    
+    .hero-social-proof {
+      margin-top: 32px; font-size: 15px; color: var(--app-text-muted);
+      animation: fadeInPost 0.8s ease 0.4s both;
+    }
+    .hero-social-proof strong { color: var(--app-text); font-weight: 600; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInPost { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── FEATURES ── */
+    .features {
+      background: #FFFFFF;
+      padding: 120px 20px;
+      border-top: 1px solid var(--app-border);
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px; max-width: 1100px; margin: 60px auto 0;
+    }
+    .feature-card {
+      background: transparent; border: none;
+      padding: 0; text-align: left;
+    }
+    .feature-icon { margin-bottom: 24px; opacity: 0.8; }
+    .feature-title { font-size: 20px; font-weight: 700; color: var(--app-text); margin-bottom: 12px; font-family: var(--font-display); }
+    .feature-desc { font-size: 15px; color: var(--app-text-muted); line-height: 1.8; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { padding: 120px 20px; max-width: 1000px; margin: 0 auto; color: var(--app-text); }
+    .section-label {
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--app-gold); font-weight: 800; margin-bottom: 16px; text-align: center;
+    }
+    .section-title {
+      font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px);
+      color: var(--app-text); margin-bottom: 64px; text-align: center;
+    }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 60px; }
+    .step { display: flex; flex-direction: column; gap: 16px; }
+    .step-num {
+      font-family: var(--font-display); font-size: 40px; line-height: 1;
+      color: var(--app-gold); font-weight: 400; font-style: italic; opacity: 0.3;
+    }
+    .step-title { font-size: 22px; font-weight: 700; color: var(--app-text); font-family: var(--font-display); }
+    .step-desc { font-size: 15px; color: var(--app-text-muted); line-height: 1.8; }
+
+    /* ── TEMPLATES STRIP ── */
+    .templates-strip {
+      background: #F8F6F2; border-top: 1px solid var(--app-border);
+      border-bottom: 1px solid var(--app-border);
+      padding: 60px 20px;
+    }
+    .templates-strip-inner { max-width: 1000px; margin: 0 auto; }
+    .strip-title { font-size: 14px; color: var(--app-text-muted); margin-bottom: 32px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    .template-pills {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+    }
+    .template-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: #FFFFFF; border: 1px solid var(--app-border);
+      padding: 12px 24px; border-radius: 4px; font-size: 14px; color: var(--app-text);
+      font-weight: 600;
+    }
+    .pill-dot { width: 8px; height: 8px; border-radius: 50%; opacity: 0.6; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 120px 20px; background: #FFFFFF; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px; max-width: 1100px; margin: 48px auto 0;
+    }
+    .testimonial-card {
+      background: transparent; border: 1px solid var(--app-border);
+      border-radius: 8px; padding: 40px;
+    }
+    .testimonial-text { font-size: 16px; color: var(--app-text); line-height: 1.8; margin-bottom: 24px; font-style: italic; }
+    .testimonial-author { font-size: 13px; color: var(--app-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 140px 20px; text-align: center;
+      background: var(--app-bg);
+    }
+    .final-cta h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 56px); color: var(--app-text); margin-bottom: 24px; }
+    .final-cta p { color: var(--app-text-muted); margin-bottom: 48px; font-size: 18px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--app-border);
+      padding: 28px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--app-text-muted); font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <img src="assets/images/logo.png" alt="Bio Data Maker Logo" style="height: 32px; width: auto;">
+      <span style="font-family:var(--font-display); font-size:20px; color:var(--app-text); font-weight:700;">Bio Data Maker</span>
+    </a>
+    <span class="nav-badge">Free · No Login · 3 Minutes</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-badge">Made for Indian Families</div>
+    <h1 class="hero-h1">Create a Simple & Respectful<br>Marriage Biodata</h1>
+    <p class="hero-sub">Clean one-page biodata accepted by Indian families.<br>Easy to share on WhatsApp. Ready to print.</p>
+    <div class="hero-cta">
+      <a href="form.html" class="btn btn-primary btn-lg">Create Biodata</a>
+      <span style="font-size:13px; color:var(--app-text-muted); font-weight:600;">Free • No Login Required</span>
+    </div>
+    <p class="hero-social-proof">Used by families across India for <strong>marriage proposals</strong></p>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div style="max-width:900px;margin:0 auto;text-align:center">
+      <div class="section-label">Trust & Excellence</div>
+      <h2 class="section-title">Everything Indian families expect</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><img src="assets/images/icon-camera.png" alt="Camera" style="width:50px;"></div>
+        <div class="feature-title">Profile & Family Photo</div>
+        <div class="feature-desc">Attach your profile photo and family details. Perfectly formatted for a respectful first impression.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><img src="assets/images/layout.png" alt="Layout" style="width:50px;"></div>
+        <div class="feature-title">Traditional Layouts</div>
+        <div class="feature-desc">Choose from 8 classic templates including specialized designs for Horoscope, Jain, and Sikh traditions.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><img src="assets/images/palette.png" alt="Palette" style="width:50px;"></div>
+        <div class="feature-title">Culturally Rooted Colors</div>
+        <div class="feature-desc">Select from palettes like Royal Maroon, Saffron, and Muted Gold, or customize to your family preference.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><img src="assets/images/edit.png" alt="Edit" style="width:50px;"></div>
+        <div class="feature-title">Simple Reordering</div>
+        <div class="feature-desc">Arrange sections (Education, Family, Horoscope) in the order that best represents your values.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><img src="assets/images/share.png" alt="Share" style="width:50px;"></div>
+        <div class="feature-title">WhatsApp Ready</div>
+        <div class="feature-desc">Share a professional PDF or a secure link directly on WhatsApp with your relatives or proposals.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><img src="assets/images/icon-secure.png" alt="Secure" style="width:50px;"></div>
+        <div class="feature-title">Private & Secure</div>
+        <div class="feature-desc">Your data stays on your device. We do not store your personal information on our servers.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES STRIP -->
+  <div class="templates-strip">
+    <div class="templates-strip-inner">
+      <p class="strip-title">8 templates available — choose what suits your family</p>
+      <div class="template-pills">
+        <div class="template-pill"><span class="pill-dot" style="background:#7B1C1C"></span>Simple & Traditional</div>
+        <div class="template-pill"><span class="pill-dot" style="background:#1B2A4A"></span>Modern Minimal</div>
+        <div class="template-pill"><span class="pill-dot" style="background:#FF6B35"></span>Short WhatsApp</div>
+        <div class="template-pill"><span class="pill-dot" style="background:#C9962C"></span>Horoscope Friendly</div>
+        <div class="template-pill"><span class="pill-dot" style="background:#1B2A4A"></span>Corporate Style</div>
+        <div class="template-pill"><span class="pill-dot" style="background:#1B5E20"></span>Jain / Marwari</div>
+        <div class="template-pill"><span class="pill-dot" style="background:#8B1A4A"></span>Balanced Default</div>
+        <div class="template-pill"><span class="pill-dot" style="background:#0D0D0D"></span>Sikh / Punjabi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="section-label">The Process</div>
+    <h2 class="section-title">Three steps to a perfect biodata</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Fill Your Details</div>
+        <div class="step-desc">Answer simple questions — name, family, job, expectations. Takes about 3 minutes. Everything is optional except your name.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Pick Template & Colors</div>
+        <div class="step-desc">Choose from 8 Indian style templates. Pick a color theme — or build your own. See live preview instantly.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Download & Share</div>
+        <div class="step-desc">Download a print ready PDF. Share on WhatsApp with one click. Biodata is ready for families and pandits.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div style="max-width:900px;margin:0 auto;text-align:center">
+      <div class="section-label">Trusted by Families</div>
+      <h2 class="section-title">What families are saying</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">"Our daughter's biodata was ready in 5 minutes. We shared it with 4 families the same evening on WhatsApp. Excellent tool."</p>
+        <div class="testimonial-author">- Suresh Mehta, Ahmedabad (Jain family)</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"No design skills needed. Our pandit said it was very well formatted. The horoscope template was perfect for us."</p>
+        <div class="testimonial-author">- Priya Sharma, Jaipur (Hindu family)</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"Better than any local agent. Used the corporate template for my son — everyone appreciated the professional look."</p>
+        <div class="testimonial-author">- Harjinder Singh, Delhi (Sikh family)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>Ready to create your biodata?</h2>
+    <p>Free for everyone. No registration required. Accepted by families across India.</p>
+    <a href="form.html" class="btn btn-primary btn-lg">Create Biodata</a>
+    <p style="margin-top:24px; font-size:14px; color:var(--app-text-muted); font-weight:600;">
+      ✓ Private & Secure &nbsp;·&nbsp; ✓ Professional Designs &nbsp;·&nbsp; ✓ Print Ready
+    </p>
+  </section>
+
+  <footer class="dev-footer">
+    <div class="footer-motto">"Helping families find the perfect match, one biodata at a time."</div>
+    <div>Designed & Developed with <span class="heart">❤️</span> by <a href="https://tusharjain.in" target="_blank">Tushar Jain</a> — <a href="support.html" style="border-bottom-style:dashed;">Buy me a Chai</a></div>
+    <div class="footer-tagline">Made with Love for Bharat</div>
+  </footer>
+
+  <script>
+    // Simple Scroll Animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.feature-card, .step, .testimonial-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
