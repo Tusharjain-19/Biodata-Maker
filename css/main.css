@@ -166,7 +166,8 @@ body {
   display: flex; align-items: center; justify-content: center;
   opacity: 0; pointer-events: none; transition: opacity 0.25s;
 }
-.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-overlay.open,
+.modal-overlay.show { opacity: 1; pointer-events: all !important; }
 .modal-box {
   background: var(--app-surface); border: 1px solid var(--app-border);
   border-radius: 16px; padding: 32px; max-width: 480px; width: 90%;

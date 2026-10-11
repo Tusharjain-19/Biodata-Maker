@@ -168,11 +168,30 @@ function renderStep() {
           ${floatingInput('sisters', 'Sister(s)', 'e.g. 1 Married', 'text')}
         </div>
         ${(fd.community === 'hindu' || fd.community === 'jain') ? `
-          <div class="field-grid-2">
-            ${floatingInput('gotra', 'Gotra', 'e.g. Bharadwaj', 'text')}
-            ${floatingInput('subCaste', 'Sub-caste / Sect', 'e.g. Agarwal / Iyengar', 'text')}
+          <div style="margin: 16px 0 6px;">
+            <div style="font-weight: 700; font-size: 13px; color: var(--app-accent); margin-bottom: 8px; display:flex; align-items:center; justify-content:space-between;">
+              <span>Gotra Details (4-Gotra System)</span>
+              <span style="font-size:11px; font-weight:500; color:var(--app-text-muted);">Traditional Indian Matchmaking</span>
+            </div>
+            <div class="field-grid-2">
+              ${floatingInput('gotraDada', "Self / Dada Ji Gotra", 'e.g. Goyal / Kashyap', 'text')}
+              ${floatingInput('gotraDadi', "Dadi Ji Gotra", 'e.g. Mittal', 'text')}
+            </div>
+            <div class="field-grid-2">
+              ${floatingInput('gotraNana', "Nanihal / Nana Ji Gotra", 'e.g. Bansal', 'text')}
+              ${floatingInput('gotraNani', "Nani Ji Gotra", 'e.g. Singhal', 'text')}
+            </div>
+            <div class="field-grid-2">
+              ${floatingInput('gotraExtra', "Additional Gotra (optional)", 'e.g. Pardadi Gotra', 'text')}
+              ${floatingInput('subCaste', 'Sub-caste / Sect', 'e.g. Agarwal / Vaishya', 'text')}
+            </div>
           </div>
-        ` : floatingInput('subCaste', 'Sub-caste / Sect (optional)', '', 'text')}
+        ` : `
+          <div class="field-grid-2">
+            ${floatingInput('gotraDada', 'Gotra (optional)', '', 'text')}
+            ${floatingInput('subCaste', 'Sub-caste / Sect (optional)', '', 'text')}
+          </div>
+        `}
         ${floatingSelect('familyStatus', 'Family Status', [
           'Middle Class','Upper Middle Class','Affluent','Business Family','Service Family'
         ])}
@@ -384,10 +403,10 @@ function attachStepListeners() {
 function handlePhotoUpload(event, type) {
   const file = event.target.files[0];
   if (!file) return;
-  if (file.size > 5 * 1024 * 1024) { showToast('Photo must be under 5MB', 'error'); return; }
+  if (file.size > 15 * 1024 * 1024) { showToast('Photo must be under 15MB', 'error'); return; }
   
-  const maxWidth = type === 'profile' ? 600 : 1000;
-  compressImage(file, maxWidth, 0.85, (base64) => {
+  const maxWidth = type === 'profile' ? 1800 : 2200;
+  compressImage(file, maxWidth, 0.95, (base64) => {
     if (type === 'profile') state.profilePhoto = base64;
     else { state.familyPhoto = base64; state.showFamilyPhoto = true; }
     saveNow(state);
@@ -402,9 +421,12 @@ function compressImage(file, maxWidth, quality, callback) {
     img.onload = () => {
       const canvas = document.createElement('canvas');
       const ratio = Math.min(maxWidth / img.width, 1);
-      canvas.width = img.width * ratio;
-      canvas.height = img.height * ratio;
-      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.width = Math.round(img.width * ratio);
+      canvas.height = Math.round(img.height * ratio);
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       callback(canvas.toDataURL('image/jpeg', quality));
     };
     img.src = e.target.result;

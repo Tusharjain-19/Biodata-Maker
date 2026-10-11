@@ -18,7 +18,14 @@ const DEFAULT_STATE = {
     assets: [],
     fatherName: '', fatherOccupation: '',
     motherName: '', motherOccupation: '',
-    nativePlace: '', gotra: '', subCaste: '',
+    nativePlace: '',
+    gotra: '',
+    gotraDada: '',
+    gotraDadi: '',
+    gotraNana: '',
+    gotraNani: '',
+    gotraExtra: '',
+    subCaste: '',
     brothers: '', sisters: '',
     familyType: 'Nuclear', familyValues: 'Moderate',
     familyStatus: '', maternalUncle: '',
@@ -33,6 +40,7 @@ const DEFAULT_STATE = {
     customTitle: '',
   },
   profilePhoto: null,
+  photoShape: 'arch',
   familyPhoto: null,
   showFamilyPhoto: false,
   selectedTemplate: 'balanced',
@@ -41,6 +49,24 @@ const DEFAULT_STATE = {
   sectionOrder: ['header','personal','education','family','horoscope','expectations','contact','familyPhoto'],
   hiddenSections: [],
   hiddenFields: [],
+  customSectionTitles: {},
+  customFieldLabels: {},
+  customSections: [],
+  extraFields: {},
+  designSettings: { 
+    bannerStyle: 'royal', 
+    borderStyle: 'ornate', 
+    photoShape: 'royalArch',
+    photoFrame: 'royalArch',
+    photoSize: 'normal',
+    photoPosition: 'center top',
+    fontSize: 'normal',
+    valueWeight: '600',
+    valueStyle: 'normal',
+    labelWeight: '700',
+    cardTint: 'theme',
+    customCardBg: null
+  },
   lastSaved: null,
 };
 
@@ -88,6 +114,11 @@ function encodeStateToURL(state) {
     th: state.selectedTheme,
     so: state.sectionOrder,
     hs: state.hiddenSections,
+    ds: state.designSettings,
+    cst: state.customSectionTitles,
+    cfl: state.customFieldLabels,
+    cs: state.customSections,
+    ef: state.extraFields,
   };
   return btoa(unescape(encodeURIComponent(JSON.stringify(minimal))));
 }
@@ -102,6 +133,11 @@ function decodeStateFromURL(hash) {
       selectedTheme: decoded.th || 'royalMaroon',
       sectionOrder: decoded.so || DEFAULT_STATE.sectionOrder,
       hiddenSections: decoded.hs || [],
+      designSettings: decoded.ds || { bannerStyle: 'royal', borderStyle: 'ornate', photoShape: 'arch' },
+      customSectionTitles: decoded.cst || {},
+      customFieldLabels: decoded.cfl || {},
+      customSections: decoded.cs || [],
+      extraFields: decoded.ef || {},
     };
   } catch(e) {
     return null;
@@ -165,16 +201,16 @@ function calculateAge(dob) {
 
 // ── THEMES OBJECT ──
 const THEMES = {
-  royalMaroon:  { name:'Royal Maroon',   primary:'#7B1C1C', accent:'#C9962C', background:'#FDF8F0', text:'#1A1A1A', border:'#C9962C', headerBg:'#7B1C1C', headerText:'#FFFFFF' },
-  saffronGold:  { name:'Saffron & Gold', primary:'#C84B00', accent:'#F5A623', background:'#FFFBF0', text:'#1C1C1C', border:'#E07B00', headerBg:'#C84B00', headerText:'#FFFFFF' },
-  deepNavy:     { name:'Deep Navy',      primary:'#1B2A4A', accent:'#4A90D9', background:'#F8FAFF', text:'#0D1B2A', border:'#4A90D9', headerBg:'#1B2A4A', headerText:'#FFFFFF' },
-  emeraldGold:  { name:'Emerald & Gold', primary:'#1B5E20', accent:'#C9962C', background:'#F5FBF5', text:'#1A1A1A', border:'#C9962C', headerBg:'#1B5E20', headerText:'#FFFFFF' },
-  rosePetal:    { name:'Rose Petal',     primary:'#8B1A4A', accent:'#D4547A', background:'#FFF5F8', text:'#1A1A1A', border:'#D4547A', headerBg:'#8B1A4A', headerText:'#FFFFFF' },
-  peacockBlue:  { name:'Peacock Blue',   primary:'#005F56', accent:'#00B4A0', background:'#F0FFFE', text:'#0D1B18', border:'#00B4A0', headerBg:'#005F56', headerText:'#FFFFFF' },
-  blackGold:    { name:'Black & Gold',   primary:'#0D0D0D', accent:'#B8860B', background:'#FFFFF0', text:'#0D0D0D', border:'#B8860B', headerBg:'#0D0D0D', headerText:'#C9962C' },
-  lavender:     { name:'Lavender Mist',  primary:'#4A3570', accent:'#9B72CF', background:'#FAF7FF', text:'#1A1A1A', border:'#9B72CF', headerBg:'#4A3570', headerText:'#FFFFFF' },
-  ivoryRust:    { name:'Ivory & Rust',   primary:'#8B3A2A', accent:'#D4956A', background:'#FFF9F5', text:'#2C1810', border:'#D4956A', headerBg:'#8B3A2A', headerText:'#FFFFFF' },
-  pureClassic:  { name:'Pure Classic',   primary:'#000000', accent:'#333333', background:'#FFFFFF', text:'#000000', border:'#000000', headerBg:'#000000', headerText:'#FFFFFF' },
+  royalMaroon:  { name:'Royal Maroon',   primary:'#7B1C1C', accent:'#C9962C', background:'#FDF8F0', cardBg:'#FAF3E6', text:'#1A1A1A', border:'#C9962C', headerBg:'#7B1C1C', headerText:'#FFFFFF' },
+  saffronGold:  { name:'Saffron & Gold', primary:'#C84B00', accent:'#F5A623', background:'#FFFBF0', cardBg:'#FFF4DE', text:'#1C1C1C', border:'#E07B00', headerBg:'#C84B00', headerText:'#FFFFFF' },
+  deepNavy:     { name:'Deep Navy',      primary:'#1B2A4A', accent:'#4A90D9', background:'#F8FAFF', cardBg:'#EDF4FD', text:'#0D1B2A', border:'#4A90D9', headerBg:'#1B2A4A', headerText:'#FFFFFF' },
+  emeraldGold:  { name:'Emerald & Gold', primary:'#1B5E20', accent:'#C9962C', background:'#F5FBF5', cardBg:'#EBF7EC', text:'#1A1A1A', border:'#C9962C', headerBg:'#1B5E20', headerText:'#FFFFFF' },
+  rosePetal:    { name:'Rose Petal',     primary:'#8B1A4A', accent:'#D4547A', background:'#FFF5F8', cardBg:'#FEEBF2', text:'#1A1A1A', border:'#D4547A', headerBg:'#8B1A4A', headerText:'#FFFFFF' },
+  peacockBlue:  { name:'Peacock Blue',   primary:'#005F56', accent:'#00B4A0', background:'#F0FFFE', cardBg:'#E2FAF7', text:'#0D1B18', border:'#00B4A0', headerBg:'#005F56', headerText:'#FFFFFF' },
+  blackGold:    { name:'Black & Gold',   primary:'#0D0D0D', accent:'#B8860B', background:'#FFFFF0', cardBg:'#F8F5E4', text:'#0D0D0D', border:'#B8860B', headerBg:'#0D0D0D', headerText:'#C9962C' },
+  lavender:     { name:'Lavender Mist',  primary:'#4A3570', accent:'#9B72CF', background:'#FAF7FF', cardBg:'#F3EBFD', text:'#1A1A1A', border:'#9B72CF', headerBg:'#4A3570', headerText:'#FFFFFF' },
+  ivoryRust:    { name:'Ivory & Rust',   primary:'#8B3A2A', accent:'#D4956A', background:'#FFF9F5', cardBg:'#FCEEE4', text:'#2C1810', border:'#D4956A', headerBg:'#8B3A2A', headerText:'#FFFFFF' },
+  pureClassic:  { name:'Pure Classic',   primary:'#000000', accent:'#333333', background:'#FFFFFF', cardBg:'#F4F4F4', text:'#000000', border:'#000000', headerBg:'#000000', headerText:'#FFFFFF' },
 };
 
 const NAKSHATRAS = [
